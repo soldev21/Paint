@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: asanpay-commons:asanpay-commons:1.0.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/asanpay-commons/asanpay-commons/1.0.2/asanpay-commons-1.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/asanpay-commons/asanpay-commons/1.0.2/asanpay-commons-1.0.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/asanpay-commons/asanpay-commons/1.0.2/asanpay-commons-1.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
