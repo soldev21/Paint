@@ -26,10 +26,11 @@ public class Frame extends java.awt.Frame implements KeyListener{
     Frame frame;
     Graphics graphics;
     int x,y;
+    boolean showCursor = false;
     TimerUtil timerUtil = TimerUtil.newInstance();
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[1];
-    ExecutorService service = Executors.newFixedThreadPool(100);
+    ExecutorService service = Executors.newFixedThreadPool(1000);
 //    Queue<BufferedImage> imageQueue = new ConcurrentLinkedDeque<>();
     public Frame() throws AWTException, IOException, InterruptedException {
         frame = this;
@@ -99,6 +100,7 @@ public class Frame extends java.awt.Frame implements KeyListener{
 //                device.setFullScreenWindow(frame);
                 System.out.println("Button Action performed");
                 device.setFullScreenWindow(frame);
+                showCursor = !showCursor;
             }
         });
     }
@@ -113,7 +115,7 @@ public class Frame extends java.awt.Frame implements KeyListener{
 //        imageQueue.add(robot.createScreenCapture(new Rectangle(0,0,dimension.width,dimension.height)));
 //        timerUtil.printPoint();
 //        System.out.println(imageQueue.size());
-//            image.getGraphics().drawImage(cursor, x, y, 16, 24, null); // cursor.gif is 16x16 size.
+          if (showCursor)  image.getGraphics().drawImage(cursor, x, y, 16, 24, null); // cursor.gif is 16x16 size.
         img = image;
 //        timerUtil.printPoint();
         System.out.println("****************");
