@@ -8,9 +8,6 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.ConcurrentLinkedDeque;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,7 +16,7 @@ import java.util.concurrent.Executors;
  */
 public class Frame extends java.awt.Frame implements KeyListener{
     BufferedImage img;
-    Image cursor = ImageIO.read(new File("E://cursor.png"));
+    Image cursor = ImageIO.read(new File("D://cursor.png"));
     Robot robot = new Robot();
     MediaTracker mt;
     Dimension dimension;
@@ -29,14 +26,16 @@ public class Frame extends java.awt.Frame implements KeyListener{
     boolean showCursor = false;
     TimerUtil timerUtil = TimerUtil.newInstance();
     static GraphicsDevice device = GraphicsEnvironment
-            .getLocalGraphicsEnvironment().getScreenDevices()[1];
-    ExecutorService service = Executors.newFixedThreadPool(1000);
+            .getLocalGraphicsEnvironment().getScreenDevices()[0];
+    ExecutorService service = Executors.newFixedThreadPool(10);
 //    Queue<BufferedImage> imageQueue = new ConcurrentLinkedDeque<>();
+
     public Frame() throws AWTException, IOException, InterruptedException {
         frame = this;
         addKeyListener(frame);
 
-        dimension = Toolkit.getDefaultToolkit().getScreenSize();
+//        dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        dimension = new Dimension(500,500);
         addButton();
 
 
@@ -55,7 +54,7 @@ public class Frame extends java.awt.Frame implements KeyListener{
 
         });
 
-        setUndecorated(true);
+        //setUndecorated(true);
         setSize(dimension);//frame size 300 width and 300 height
         setLayout(null);//no layout manager
         setVisible(true);//now frame will be visible, by default not visible
@@ -75,11 +74,6 @@ public class Frame extends java.awt.Frame implements KeyListener{
         new Thread(()->{
             while (true) {
                     update(graphics);
-//                try {
-//                    Thread.sleep(1);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
             }
         }).start();
 
@@ -99,7 +93,7 @@ public class Frame extends java.awt.Frame implements KeyListener{
             public void actionPerformed(ActionEvent e) {
 //                device.setFullScreenWindow(frame);
                 System.out.println("Button Action performed");
-                device.setFullScreenWindow(frame);
+                //device.setFullScreenWindow(frame);
                 showCursor = !showCursor;
             }
         });
@@ -115,7 +109,7 @@ public class Frame extends java.awt.Frame implements KeyListener{
 //        imageQueue.add(robot.createScreenCapture(new Rectangle(0,0,dimension.width,dimension.height)));
 //        timerUtil.printPoint();
 //        System.out.println(imageQueue.size());
-          if (showCursor)  image.getGraphics().drawImage(cursor, x, y, 16, 24, null); // cursor.gif is 16x16 size.
+          if (showCursor)  image.getGraphics().drawImage(cursor, x, y, 16, 23, null); // cursor.gif is 16x16 size.
         img = image;
 //        timerUtil.printPoint();
         System.out.println("****************");
