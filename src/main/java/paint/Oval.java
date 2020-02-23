@@ -1,11 +1,7 @@
 package paint;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Ellipse2D;
 
 /**
  * Created by Sherif on 2/23/2020.
@@ -18,13 +14,9 @@ public class Oval extends PaintFigure {
 
     public Oval(int x, int y, Color color) {
         super(x, y, color);
-        setSize(new Dimension(width+1, height+1));
-        setBounds(x, y, width+1, height+1);
+        setSize(new Dimension(width + 1, height + 1));
+        setBounds(x, y, width + 1, height + 1);
 //
-    }
-
-    private int getRadius() {
-        return Math.min(width, height);
     }
 
 
@@ -35,7 +27,7 @@ public class Oval extends PaintFigure {
         Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2D.setColor(color);
-        graphics2D.fillOval(0, 0, width, height);
+        graphics2D.fillRect(0, 0, width, height);
     }
 
     @Override
@@ -52,6 +44,8 @@ public class Oval extends PaintFigure {
 
     @Override
     public void resize() {
-
+        setSize(new Dimension(width + 1, height + 1));
+        setBounds(x, y, width + 1, height + 1);
+        update(getGraphics());
     }
 }

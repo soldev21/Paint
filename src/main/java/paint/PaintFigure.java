@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import static util.Utility.CursorFactory.DEFAULT_CURSOR;
 
@@ -14,8 +17,10 @@ public abstract class PaintFigure extends PaintComponent implements MouseListene
 
     private int clickedX;
     private int clickedY;
+    protected Map<Integer,Map<Integer,Point>> resizablePoints;
 
     public PaintFigure(int x, int y, Color color){
+        resizablePoints = new HashMap<>();
         this.x = x;
         this.y = y;
         this.color = color;
@@ -26,7 +31,7 @@ public abstract class PaintFigure extends PaintComponent implements MouseListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        resize();
     }
 
     @Override
@@ -66,5 +71,13 @@ public abstract class PaintFigure extends PaintComponent implements MouseListene
     @Override
     public void mouseMoved(MouseEvent e) {
 
+    }
+
+    private Point getResizablePoint(int x,int y){
+        Map<Integer,Point> map;
+        if (Objects.nonNull(map=resizablePoints.get(x))){
+            return map.get(y);
+        }
+        return null;
     }
 }
