@@ -2,13 +2,14 @@ package paint;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
+
+import static paint.FigureFactory.getNewFigure;
 
 /**
  * Created by Sherif on 2/23/2020.
  */
-public class Paint extends JFrame implements MouseMotionListener{
+public class Paint extends JFrame {
 
     private static int MAIN_WIDTH=500;
     private static int MAIN_HEIGHT = 300;
@@ -23,31 +24,32 @@ public class Paint extends JFrame implements MouseMotionListener{
         this.setSize(MAIN_WIDTH,MAIN_HEIGHT);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        getContentPane().setBackground(Color.WHITE);
         this.setLayout(null);
-        initWithDrawings();
-        addMouseMotionListener(this);
+        addMouseMotionListener(new CustomMouseMotionListener());
+        addMouseListener(new CustomMouseListener());
     }
 
-    public void initWithDrawings(){
-        Oval oval = new Oval(10,10, Color.BLUE);
-        Oval oval2 = new Oval(30,30, Color.CYAN);
-        Oval oval3 = new Oval(50,50, Color.RED);
-        getContentPane().add(oval);
-        getContentPane().add(oval2);
-        getContentPane().add(oval3);
-//        Circle circle = new Circle(15,25);
-//        Circle circle2 = new Circle(40,50);
-//        getContentPane().add(circle);
-//        getContentPane().add(circle2);
+    private class CustomMouseMotionListener extends MouseMotionAdapter {
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            System.out.println(String.format("Resize : x=%d y=%d",e.getX(),e.getY()));
+            Painter.resize(e.getX(),e.getY());
+        }
     }
 
-    @Override
-    public void mouseDragged(MouseEvent e) {
-//        System.out.println(e.getX()+" "+e.getY());
-    }
+    private class CustomMouseListener extends MouseAdapter {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            requestFocus();
+        }
 
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
+        @Override
+        public void mousePressed(MouseEvent e) {
+            System.out.println(String.format("Initial : x=%d y=%d",e.getX(),e.getY()));
+            PaintFigure figure = Painter.init(e.getX(),e.getY());
+            getContentPane().add(figure);
+            repaint();
+        }
     }
 }
