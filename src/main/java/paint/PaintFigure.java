@@ -70,6 +70,7 @@ public abstract class PaintFigure extends PaintComponent implements Resizable {
         public void focusGained(FocusEvent e) {
             System.out.println("Focus Gained: " + number);
             setBorder();
+            Painter.setPaintFigure(this_);
         }
 
         /**
@@ -79,6 +80,7 @@ public abstract class PaintFigure extends PaintComponent implements Resizable {
         public void focusLost(FocusEvent e) {
             System.out.println("Focus Lost: " + number);
             setBorder(null);
+            Painter.setPaintFigure(null);
         }
     }
 
@@ -147,7 +149,7 @@ public abstract class PaintFigure extends PaintComponent implements Resizable {
 
     public enum Figure {
         OVAL,
-        RECTANCGLE
+        RECTANGLE
     }
 
     public enum Action {

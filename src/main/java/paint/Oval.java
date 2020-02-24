@@ -11,8 +11,8 @@ import static util.Utility.PointUtil.*;
  */
 public class Oval extends PaintFigure {
 
-    int height=20;
-    int width =20;
+    int height;
+    int width;
 
     public Oval(Point point,Color color){
         this(point.x,point.y,color);
@@ -32,7 +32,7 @@ public class Oval extends PaintFigure {
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2D.setColor(color);
 //        graphics2D.drawOval(0, 0, width, height);
-        graphics2D.fillOval(0, 0, width, height);
+        graphics2D.drawOval(0, 0, width, height);
     }
 
     @Override

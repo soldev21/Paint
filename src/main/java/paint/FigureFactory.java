@@ -12,7 +12,7 @@ public final class FigureFactory {
     public static PaintFigure getNewFigure(PaintFigure.Figure figure, Point startPoint, Color color){
         switch (figure){
             case OVAL: return new Oval(startPoint,color);
-            case RECTANCGLE: return new Rectangle(startPoint,color);
+            case RECTANGLE: return new Rectangle(startPoint,color);
         }
         throw new RuntimeException("There is no any "+figure+" implementation");
     }

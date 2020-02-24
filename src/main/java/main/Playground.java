@@ -17,11 +17,12 @@ public class Playground {
             @Override
             public void run() {
                 try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-                Paint paint = new Paint();
+//                Paint paint = new Paint();
+                MainClass paint = new MainClass();
             }
         });
     }
