@@ -13,7 +13,9 @@ public class Painter {
     private static PaintFigure paintFigure;
 
     public static PaintFigure init(int x, int y){
+        if (Objects.nonNull(color) && Objects.nonNull(figure))
         return init(figure,color,x,y);
+        else return null;
     }
 
     public static PaintFigure init(PaintFigure.Figure figure,Color color, int x, int y){
@@ -22,6 +24,7 @@ public class Painter {
     }
 
     public static void resize(int x,int y){
+        if (Objects.nonNull(paintFigure))
         paintFigure.resizeItem(x,y);
     }
 

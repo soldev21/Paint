@@ -7,12 +7,13 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.util.Objects;
 
 public class DrawingPanel extends JPanel {
 
-    public DrawingPanel(){
+    public DrawingPanel() {
 
-        setPreferredSize(new Dimension(1000,600));
+        setPreferredSize(new Dimension(1000, 600));
         setBackground(Color.WHITE);
         addMouseMotionListener(new CustomMouseMotionListener());
         addMouseListener(new CustomMouseListener());
@@ -22,8 +23,8 @@ public class DrawingPanel extends JPanel {
     private class CustomMouseMotionListener extends MouseMotionAdapter {
         @Override
         public void mouseDragged(MouseEvent e) {
-            System.out.println(String.format("Resize : x=%d y=%d",e.getX(),e.getY()));
-            paint.Painter.resize(e.getX(),e.getY());
+            System.out.println(String.format("Resize : x=%d y=%d", e.getX(), e.getY()));
+            paint.Painter.resize(e.getX(), e.getY());
         }
     }
 
@@ -35,10 +36,12 @@ public class DrawingPanel extends JPanel {
 
         @Override
         public void mousePressed(MouseEvent e) {
-            System.out.println(String.format("Initial : x=%d y=%d",e.getX(),e.getY()));
-            PaintFigure figure = paint.Painter.init(e.getX(),e.getY());
-            add(figure);
-            repaint();
+            System.out.println(String.format("Initial : x=%d y=%d", e.getX(), e.getY()));
+            PaintFigure figure = paint.Painter.init(e.getX(), e.getY());
+            if (Objects.nonNull(figure)) {
+                add(figure);
+                repaint();
+            }
         }
     }
 }

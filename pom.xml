@@ -20,13 +20,4 @@
         </plugins>
     </build>
 
-
-    <dependencies>
-        <dependency>
-            <groupId>asanpay-commons</groupId>
-            <artifactId>asanpay-commons</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-    </dependencies>
-
 </project>
