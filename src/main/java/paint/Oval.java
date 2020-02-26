@@ -44,7 +44,7 @@ public class Oval extends PaintFigure {
 
     @Override
     public void fill(Color color) {
-        currentAction= Action.FILL;
+//        currentAction= Action.FILL;
         update(getGraphics());
     }
 

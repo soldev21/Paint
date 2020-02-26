@@ -1,12 +1,7 @@
 package paint;
 
-import com.sun.org.apache.regexp.internal.RE;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -22,21 +17,21 @@ public abstract class PaintFigure extends PaintComponent implements Resizable {
 
     private int clickedX;
     private int clickedY;
-    protected Map<Integer, Map<Integer, Point>> resizablePoints;
-    protected Map<Action, Runnable> actions;
-    protected Action currentAction;
+//    protected Map<Integer,Map<Integer, Point>> resizablePoints;
+//    protected Map<Action,Runnable> actions;
+//    protected Action currentAction;
     private PaintFigure this_;
-    private static int counter;
-    private int number;
+//    private static int counter;
+//    private int number;
 
     public PaintFigure(Point point, Color color) {
         this(point.x, point.y, color);
     }
 
     public PaintFigure(int x, int y, Color color) {
-        setCurrentAction(Action.DRAW);
-        resizablePoints = new HashMap<>();
-        actions = new HashMap<>();
+//        setCurrentAction(Action.DRAW);
+//        resizablePoints = new HashMap<>();
+//        actions = new HashMap<>();
         this.x = x;
         this.y = y;
         this.color = color;
@@ -47,14 +42,14 @@ public abstract class PaintFigure extends PaintComponent implements Resizable {
         addKeyListener(new MyKeyAdapter());
         addFocusListener(new MyFocusListener());
         this_ = this;
-        number = ++counter;
+//        number = ++counter;
     }
 
     private class MyKeyAdapter extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println("Key PRESSED :" + number + " " + e.getKeyCode());
+//            System.out.println("Key PRESSED :" + number + " " + e.getKeyCode());
             if (e.getKeyCode() == KeyEvent.VK_DELETE) {
                 Container parent = getParent();
                 parent.remove(this_);
@@ -68,7 +63,7 @@ public abstract class PaintFigure extends PaintComponent implements Resizable {
 
         @Override
         public void focusGained(FocusEvent e) {
-            System.out.println("Focus Gained: " + number);
+//            System.out.println("Focus Gained: " + number);
             setBorder();
             Painter.setPaintFigure(this_);
         }
@@ -78,7 +73,7 @@ public abstract class PaintFigure extends PaintComponent implements Resizable {
          */
         @Override
         public void focusLost(FocusEvent e) {
-            System.out.println("Focus Lost: " + number);
+//            System.out.println("Focus Lost: " + number);
             setBorder(null);
             Painter.setPaintFigure(null);
         }
@@ -102,7 +97,7 @@ public abstract class PaintFigure extends PaintComponent implements Resizable {
     private class CustomMouseListener extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
-            System.out.println("Figure Clicked: " + number);
+//            System.out.println("Figure Clicked: " + number);
             requestFocusInWindow(true);
         }
 
@@ -128,19 +123,19 @@ public abstract class PaintFigure extends PaintComponent implements Resizable {
     }
 
 
-    public void setCurrentAction(Action currentAction) {
-        this.currentAction = currentAction;
-    }
+//    public void setCurrentAction(Action currentAction) {
+//        this.currentAction = currentAction;
+//    }
 
     public abstract void fill(Color color);
 
-    private Point getResizablePoint(int x, int y) {
-        Map<Integer, Point> map;
-        if (Objects.nonNull(map = resizablePoints.get(x))) {
-            return map.get(y);
-        }
-        return null;
-    }
+//    private Point getResizablePoint(int x, int y) {
+//        Map<Integer, Point> map;
+//        if (Objects.nonNull(map = resizablePoints.get(x))) {
+//            return map.get(y);
+//        }
+//        return null;
+//    }
 
     private void setBorder() {
         setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));

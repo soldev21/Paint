@@ -44,7 +44,7 @@ public class Rectangle extends PaintFigure {
 
     @Override
     public void fill(Color color) {
-        currentAction= Action.FILL;
+//        currentAction= Action.FILL;
         update(getGraphics());
     }
 
